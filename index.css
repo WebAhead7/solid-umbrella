@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+div.weather {
+  /* border: 1px solid grey; */
+  margin: 20px;
+}
+
+div.dayimage-tem {
+  display: flex;
+}
+
+div.days-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+div.days-graph {
+  height: 30vh;
+  border: 1px solid black;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.second-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
