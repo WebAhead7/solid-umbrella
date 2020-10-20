@@ -1,11 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
     <title>Weather</title>
 </head>
+
 <body>
-    
+    <div id="weather" class="weather">
+        <div id="weather-datails">
+            <h1 id="location">Haifa</h1>
+            <h2 id="dayTime">Wednesday 3:00</h2>
+            <h2 id="status">Clear</h2>
+            <div class="dayimage-temp">
+                <img src="./partly_cloudy.png" alt="sunny">
+                <p>24 <sup>&#8451</sup> </p>
+            </div>
+
+            <div id="weather-graph-hourly" class="days-graph">
+                graph
+            </div>
+        </div>
+
+        <div id="weather-days-detail" class="days-container">
+
+            <div id="day1">
+                <h1>Tue</h1>
+                <img src="./partly_cloudy.png" alt="rainy">
+                <h2>24 <sup>&#8451</sup></h2>
+            </div>
+
+            <div id="day2">
+                <h1>Tue</h1>
+                <img src="./partly_cloudy.png" alt="rainy">
+                <h2>24 <sup>&#8451</sup></h2>
+            </div>
+
+            <div id="day3">
+                <h1>Tue</h1>
+                <img src="./partly_cloudy.png" alt="rainy">
+                <h2>24 <sup>&#8451</sup></h2>
+            </div>
+
+            <div id="day4" class="day-details-card">
+                <h1>Tue</h1>
+                <img src="./partly_cloudy.png" alt="rainy">
+                <h2>24 <sup>&#8451</sup></h2>
+            </div>
+            <div id="day5" class="day-details-card">
+                <h1>Tue</h1>
+                <img src="./partly_cloudy.png" alt="rainy">
+                <h2>24 <sup>&#8451</sup></h2>
+            </div>
+
+        </div>
+        <form>
+            <input type="text" placeholder="...">
+            <input type="submit" value="Search">
+        </form>
+    </div>
 </body>
+
 </html>
