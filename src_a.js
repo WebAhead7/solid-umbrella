@@ -4,21 +4,41 @@ function DayCard() {
   this.imagSrc;
   this.temp;
   this.hoursTemp;
+  this.feels;
+  this.humidity;
+  this.windSpeed;
+  this.status;
 }
-
+/**
+ * getters
+ */
 DayCard.prototype.getDay = function () {
-  return this.day;
+ return this.day;
 };
 DayCard.prototype.getImageSrc = function () {
-  return this.imagSrc;
+ return this.imagSrc;
 };
 DayCard.prototype.getTemperature = function () {
-  return this.temp;
+ return this.temp;
 };
 DayCard.prototype.getHoursTemperature = function () {
-  return this.hoursTemp;
+ return this.hoursTemp;
 };
-DayCard.prototype.setDay = function (day) {
+DayCard.prototype.getFeels = function () {
+ return this.feels;
+};
+DayCard.prototype.getHumidity = function () {
+ return this.humidity;
+};
+DayCard.prototype.getWindSpeed = function () {
+ return this.windSpeed;
+};
+
+DayCard.prototype.getStatus = function () {
+  return this.status;
+ };
+/**Setters */
+DayCard.prototype.setDay= function (day) {
   this.day = day;
 };
 DayCard.prototype.setImageSrc = function (imgSrc) {
@@ -30,7 +50,18 @@ DayCard.prototype.setTemperature = function (temp) {
 DayCard.prototype.setHoursTemperature = function (arr) {
   this.hoursTemp = arr;
 };
-
+DayCard.prototype.setFeels = function (feels) {
+ this.feels = feels;
+};
+DayCard.prototype.setHumidity = function (humidity) {
+ this.humidity = humidity;
+};
+DayCard.prototype.setWindSpeed = function (windSpeed) {
+ this.windSpeed = windSpeed;
+};
+DayCard.prototype.setStatus = function (status) {
+ this.status = status;
+ };
 /**
  * in this application we have 5 cards
  */
@@ -50,6 +81,10 @@ const searchValue = document.querySelector("#searchValue");
 const todayImage = document.getElementById("todayImage");
 const todayTemp = document.getElementById("todaytemp");
 const daysHolder = document.querySelector("#days_holder");
+const feels = document.getElementById('feels');
+const speed = document.getElementById('speed');
+const humidity = document.getElementById('humidity');
+const daylinks = document.querySelectorAll('.day-link');
 
 function updateDayCards() {
   dayCards.forEach((day, index) => {
@@ -59,10 +94,10 @@ function updateDayCards() {
     dayCardElements[2].firstChild.innerText = day.getTemperature();
   });
 
-  daysHolder.forEach((card, index) => {
-    // card.value = index + 1;
-    console.log(card);
-  });
+  // daysHolder.forEach((card, index) => {
+  //   // card.value = index + 1;
+  //   console.log(card);
+  // });
 }
 function fetchWeatherData(cityName) {
   if (cityName == "" || null) return;
@@ -76,16 +111,18 @@ function fetchWeatherData(cityName) {
     .then((response) => {
       if (!response.ok) throw new Error(response.status);
       // console.log(response);
-      return response.json();
+     return response.json();
     })
     .then((jsn) => {
       allData = jsn;
+      console.log(jsn.forecast.forecastday);
       jsn.forecast.forecastday.forEach((day, index) => {
         eachDayForcastAPI(day, index);
       });
+      console.log(dayCards)
       eachDayForcastHTML(jsn);
       updateDayCards();
-      secondapi();
+      secondapi(cityName);
     })
     .catch((err) => {
       console.log(err);
@@ -97,19 +134,41 @@ function eachDayForcastAPI(day, index) {
   dayCards[index].setTemperature(Math.round(day.day.avgtemp_c));
   dayCards[index].setImageSrc(`http:${day.day.condition.icon}`);
   dayCards[index].setHoursTemperature(day.hour.map((h) => h.temp_c));
+  dayCards[index].setHumidity(day.day.avghumidity);
+  dayCards[index].setFeels(Math.round(day.hour.map(h => h.feelslike_c).reduce((a,b)=> a+b)/24));
+  dayCards[index].setWindSpeed(Math.round(day.hour.map(h => h.wind_kph).reduce((a,b)=> a+b)/24));
+  dayCards[index].setStatus(day.day.condition.text)
 }
 function eachDayForcastHTML(jsn) {
   city.innerText = jsn.location.name;
-  dateStr.innerText = dayCards[0].getDay().toDateString();
-  weatherStatus.innerText = jsn.current.condition.text;
-  todayImage.src = dayCards[0].getImageSrc();
-  todayTemp.innerText = dayCards[0].getTemperature();
+  dayClicked(0);
+  
+}
+
+function dayClicked(index){
+  weatherStatus.innerText = dayCards[index].getStatus();
+  let date = dayCards[index].getDay();
+  dateStr.innerText = date.toDateString();
+  todayImage.src = dayCards[index].getImageSrc();
+  todayTemp.innerText = dayCards[index].getTemperature();
+  feels.innerText = dayCards[index].getFeels();
+  speed.innerText = dayCards[index].getWindSpeed();
+  humidity.innerText = dayCards[index].getHumidity();
 }
 
 // fetchWeatherData("London");
 searchForm.addEventListener("click", (event) => {
   fetchWeatherData(searchValue.value);
 });
+
+daylinks.forEach(daylink => daylink.addEventListener('click',
+(event)=>{
+  event.preventDefault();
+  let index = event.target.id.split('day')[1]-1;
+  dayClicked(index);
+  console.log(event.target.id.split('day')[1]);
+}))
+
 // ***************************
 const cityname = document.getElementById("location2");
 const cityalter = document.getElementById("alternms");
@@ -119,16 +178,15 @@ const pics = [0, 0, 0, 0, 0].map((_, index) =>
   document.getElementById(`img${index + 1}`)
 );
 // console.log(pics);
-function secondapi() {
+function secondapi(cityName) {
   fetch(
-    `https://api.unsplash.com/search/photos/?client_id=Ix_JPaBdDffoVCKd5Dd4YuorLvJNxn3yUg2sS6GQrz8&query=${searchValue.value}`
+    `https://api.unsplash.com/search/photos/?client_id=Ix_JPaBdDffoVCKd5Dd4YuorLvJNxn3yUg2sS6GQrz8&query=${cityName}`
   )
     .then((response) => {
       if (!response.ok) throw new Error(response.status);
-      return response.json();
+   return  response.json();
     })
     .then((info) => {
-      console.log(info.results.length);
 
       citypic.src = info.results[0].urls.regular;
       citypic.alt = "";
@@ -138,23 +196,20 @@ function secondapi() {
         arr.push(i);
       }
 
-      console.log(arr);
-      console.log(arr.splice(2, 1));
-      console.log(arr);
+  
 
       function createShuffledArray(level) {
-        return Array.from({ length: level }, (_, index) => index + 1).sort(
+     return  Array.from({ length: level }, (_, index) => index + 1).sort(
           (a, b) => {
-            return Math.random() - 0.5;
+         return  Math.random() - 0.5;
           }
         );
       }
 
       const test = createShuffledArray(info.results.length - 1);
-      console.log(test);
+  
 
       for (let i = 0; i < 5; i++) {
-        console.log(`pic${i + 1}`, test[i]);
         let x = test[i];
         pics[i].src = info.results[x].urls.small;
         pics[i].alt = "";
@@ -165,6 +220,7 @@ function secondapi() {
     });
 }
 
+fetchWeatherData('Tokyo');
 // function secondapi(){
 //     fetch(`https://rapidapi.p.rapidapi.com/cities/search/${searchValue.value}`, {
 //         "method": "GET",
@@ -175,7 +231,7 @@ function secondapi() {
 //     })
 //         .then(response => {
 //             if (!response.ok) throw new Error(response.status);
-//             return response.json();
+//             response.json();
 //         })
 //         .then(info => {
 //             cityalter.innerText = "";

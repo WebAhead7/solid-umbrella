@@ -9,7 +9,9 @@
 body {
   overflow-x: hidden;
 }
-
+.unable{
+  pointer-events: none;
+}
 .container {
   width: 100%;
   display: flex;
