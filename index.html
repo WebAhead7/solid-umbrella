@@ -16,107 +16,122 @@
   />
 
     <title>Weather</title>
-   </head>
-   
+</head>
+
 <body>
     <div class="container">
         <section class="sky">
-                <section class="first-section">
-                    <div class="current">
-                        <h1 id="location">Haifa</h1>
-                        <h4 id="dayTime">Wednesday 3:00</h4>
-                        <h4> <span id="todaytemp">24</span><sup>&#8451</sup></h4>
-                        <h4 id="status">Clear</h4>
-                        <div class="dayimage-temp">
-                            <img id="todayImage" src="./partly_cloudy.png" alt="sunny">
-                        </div>
+            <section class="first-section">
+                <div class="current">
+                    <h1 id="location">Haifa</h1>
+                    <h4 id="dayTime">Wednesday 3:00</h4>
+                    <h4> <span id="todaytemp">24</span><sup>&#8451</sup></h4>
+                    <h4 id="status">Clear</h4>
+                    <div class="dayimage-temp">
+                        <img id="todayImage" src="./partly_cloudy.png" alt="sunny">
                     </div>
-                   <div class="chart">
-                       <!-- <canvas id="myChart" height="40"></canvas> -->
-                  
-                       <div class="range">
-                        <input type="range" min="1" max="7" steps="1" value="1">
-                      </div>
-                      <ul class="range-labels">
-                        <li><span>|</span> <span data-value="1">NOW</span></li>
-                        <li><span>|</span> <span data-value="2">8 AM</span></li>
-                        <li><span>|</span> <span data-value="3">9 AM</span></li>
-                        <li><span>|</span> <span data-value="4">10 AM</span></li>
-                        <li><span>|</span> <span data-value="5">11 AM</span></li>
-                        <li><span>|</span> <span data-value="6">12 AM</span></li>
-                        <li><span>|</span> <span data-value="7">1 PM</span></li>
-                      </ul>
+                </div>
+                <div class="chart">
+                    <!-- <canvas id="myChart" height="40"></canvas> -->
+
+                    <div class="range">
+                        <input type="range" min="1" max="12" steps="1" value="1">
                     </div>
-                </section>  
-                
-                <section class="second-section">
-                    <div class="current-more-info">
-                        <h3>Feels like: 26°C</h3>
-                        <h3>Wind speed: 18KM\h</h3>
-                        <h3>Humidity: 81%</h3>
-                    </div>
-                    <div id="days_holder" class="days-holder">
-                        <a href="#">
-                        <div id="day1">
-                            <h3>TODAY</h3>
-                            <img src="partly_cloudy.png" />
-                            <p><span>24</span> <sup>&#8451</sup></p>
-                        </div>
-                    </a>
-                        <a href="#">
-                        <div id="day2">
-                            <h3>FRI</h3>
-                            <img src="partly_cloudy.png" />
-                            <p><span>24</span> <sup>&#8451</sup> </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div id="day3">
-                            <h3>SAT</h3>
-                            <img src="partly_cloudy.png" />
-                            <p><span>24</span> <sup>&#8451</sup> </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div id="day4">
-                            <h3>SUN</h3>
-                            <img src="partly_cloudy.png" />
-                            <p><span>24</span> <sup>&#8451</sup> </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div id="day5">
-                            <h3>MON</h3>
-                            <img src="partly_cloudy.png" />
-                            <p><span>24</span> <sup>&#8451</sup> </p>
-                        </div>
-                    </a>
-                    </div>
-                </section>
-            </section>
-            <section class="search">
-                <div class="form">
-                    <input type="text" name="cityname" id="searchValue">
-                    <button id="searchForm">Search By City</button>
+                    <ul class="range-labels">
+                        <li><span class="unable">|</span> <span class="hookah" data-value="1">00:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="2">02:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="3">04:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="4">06:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="5">08:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="6">10:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="7">12:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="8">14:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="9">16:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="10">18:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="11">20:00</span></li>
+                        <li><span class="unable">|</span> <span class="hookah" data-value="12">22:00</span></li>
+                    </ul>
                 </div>
             </section>
+
+            <section class="second-section">
+                <div class="current-more-info">
+                    <h3>Feels like: <span id="feels">26</span>°C</h3>
+                    <h3>Wind speed: <span id="speed"><br>26</span> km\h</h3>
+                    <h3>Humidity: <span id="humidity">26</span>%</h3>
+                </div>
+                <div id="days_holder" class="days-holder">
+                    <a href="#" class="day-link">
+                        <div id="day1">
+                            <h3 class="unable">TODAY</h3>
+                            <img src="partly_cloudy.png" class="unable" />
+                            <p class="unable"><span>24</span> <sup>&#8451</sup></p>
+                        </div>
+                    </a>
+                    <a href="#" class="day-link">
+                        <div id="day2">
+                            <h3 class="unable">FRI</h3>
+                            <img src="partly_cloudy.png" class="unable" />
+                            <p class="unable"><span>24</span> <sup>&#8451</sup> </p>
+                        </div>
+                    </a>
+                    <a href="#" class="day-link">
+                        <div id="day3">
+                            <h3 class="unable">SAT</h3>
+                            <img src="partly_cloudy.png" class="unable" />
+                            <p class="unable"><span>24</span> <sup>&#8451</sup> </p>
+                        </div>
+                    </a>
+                    <a href="#" class="day-link">
+                        <div id="day4">
+                            <h3 class="unable">SUN</h3>
+                            <img src="partly_cloudy.png" class="unable" />
+                            <p class="unable"><span>24</span> <sup>&#8451</sup> </p>
+                        </div>
+                    </a>
+                    <a href="#" class="day-link">
+                        <div id="day5">
+                            <h3 class="unable">MON</h3>
+                            <img src="partly_cloudy.png" class="unable" />
+                            <p class="unable"><span>24</span> <sup>&#8451</sup> </p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </section>
 
 
             <section class="section-2">
                 <div class="inner-section-2">
                     <div class="img-holder">
                         <img id="picfetch" src="./src/imgs/japan.jpg" alt="">
-                    </div>
-                    
+                  </div>
+                </div>  
+             </section>
+        <section class="search">
+            <div class="form">
+                <input type="text" name="cityname" id="searchValue">
+                <button id="searchForm">Search By City</button>
+            </div>
+        </section>
+        <section class="section-2">
+            <div class="inner-section-2">
+                <div class="img-holder">
+                    <img id="picfetch" src="./src/imgs/japan.jpg" alt="">
                 </div>
+            </div>
                 <div class="inner-section-3">
                     <img id="img1" src="./src/imgs/japan.jpg" alt="">
                     <img id="img2" src="./src/imgs/japan.jpg" alt="">
                     <img id="img3" src="./src/imgs/japan.jpg" alt="">
                     <img id="img4" src="./src/imgs/japan.jpg" alt="">
                     <img id="img5" src="./src/imgs/japan.jpg" alt="">
-                    
+    
                 </div>
+             
+            
+            
+
                 <div class="inner-section-4">
                     <div class="card">
                         <div class="header">hala assaly</div> 
@@ -194,10 +209,13 @@
                     
                 </div>
             </section>
+            </div>
+           
+        </section>
     </div>
+    <script src="src_a.js"></script>
     <script src="src/elements.js"></script>
     <script src="src/components/inputrange.js"></script>
-    <script src="src_a.js"></script>
     <script src="src/places.js"></script>
 
 </body>

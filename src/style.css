@@ -9,7 +9,9 @@
 body {
   overflow-x: hidden;
 }
-
+.unable {
+  pointer-events: none;
+}
 .container {
   width: 100%;
   display: flex;
@@ -258,6 +260,7 @@ body {
   justify-content: space-around;
   width: 100%;
   margin-top: 30px;
+  padding: 8px;
 }
 .card {
   border: solid 2px black;
@@ -273,9 +276,7 @@ body {
 .rating h3 {
   font-size: 12px;
 }
-.first-section {
-  border: solid 2px black;
-}
+
 .body {
   border: solid 2px black;
   display: flex;
