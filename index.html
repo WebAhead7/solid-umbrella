@@ -6,75 +6,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>Weather</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            /* width: 50%; */
+            height: 600px;
+        }
+
+        .column {
+            float: left;
+            width: 25%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+
+    </style>
 </head>
 
 <body>
-    
-
-    
-    
-    
-
     <div id="weather" class="weather">
-        
-        <div id="weather-graph-hourly" class="days-graph">
-                <div><div id="weather-datails">
-                    <h1 id="location">Haifa</h1>
-                    <h2 id="dayTime">Wednesday 3:00</h2>
-                    <h2 id="status">Clear</h2>
-                    <div class="dayimage-temp">
-                        <img src="./partly_cloudy.png" alt="sunny">
-                        <p>24 <sup>&#8451</sup> </p>
-                    </div>
-                </div>
+        <div id="weather-datails">
+            <h1 id="location">Haifa</h1>
+            <h2 id="dayTime">Wednesday 3:00</h2>
+            <h2 id="status">Clear</h2>
+            <div class="dayimage-temp">
+                <img id="todayimage" src="./partly_cloudy.png" alt="Today">
+                <p><span id="todaytemp">24</span> <sup>&#8451</sup> </p>
             </div>
-                <div>
-                    <canvas id="myChart" width="800" height="100"></canvas>
-                </div>  
-        </div>
-        <div class="second-row">
-            <div><form>
-                <input type="text" placeholder="...">
-                <input type="submit" value="Search">
-            </form></div>
-            <div id="weather-days-detail" class="days-container">
 
-                <div id="day1">
-                    <h1>Tue</h1>
-                    <img src="./partly_cloudy.png" alt="rainy">
-                    <h2>24 <sup>&#8451</sup></h2>
-                </div>
-    
-                <div id="day2">
-                    <h1>Tue</h1>
-                    <img src="./partly_cloudy.png" alt="rainy">
-                    <h2>24 <sup>&#8451</sup></h2>
-                </div>
-    
-                <div id="day3">
-                    <h1>Tue</h1>
-                    <img src="./partly_cloudy.png" alt="rainy">
-                    <h2>24 <sup>&#8451</sup></h2>
-                </div>
-    
-                <div id="day4" class="day-details-card">
-                    <h1>Tue</h1>
-                    <img src="./partly_cloudy.png" alt="rainy">
-                    <h2>24 <sup>&#8451</sup></h2>
-                </div>
-                <div id="day5" class="day-details-card">
-                    <h1>Tue</h1>
-                    <img src="./partly_cloudy.png" alt="rainy">
-                    <h2>24 <sup>&#8451</sup></h2>
-                </div>
-    
+            <div id="weather-graph-hourly" class="days-graph">
+                graph
             </div>
         </div>
-        
-        
+
+        <div id="weather-days-detail" class="days-container">
+
+            <div id="day1" class="day-details-card">
+                <h1>Tue</h1>
+                <img src="http://cdn.weatherapi.com/weather/64x64/day/119.png" alt="rainy">
+                <h2><span>24</span> <sup>&#8451</sup></h2>
+            </div>
+
+            <div id="day2" class="day-details-card">
+                <h1>Tue</h1>
+                <img src="./partly_cloudy.png" alt="rainy">
+                <h2><span>24</span> <sup>&#8451</sup></h2>
+            </div>
+
+            <div id="day3" class="day-details-card">
+                <h1>Tue</h1>
+                <img src="./partly_cloudy.png" alt="rainy">
+                <h2><span>24</span> <sup>&#8451</sup></h2>
+            </div>
+
+            <div id="day4" class="day-details-card">
+                <h1>Tue</h1>
+                <img src="./partly_cloudy.png" alt="rainy">
+                <h2><span>24</span> <sup>&#8451</sup></h2>
+            </div>
+            <div id="day5" class="day-details-card">
+                <h1>Tue</h1>
+                <img src="./partly_cloudy.png" alt="rainy">
+                <h2><span>24</span> <sup>&#8451</sup></h2>
+            </div>
+        </div>
+        <form id="searchForm">
+            <input type="text" id="cityname" placeholder="...">
+            <input type="submit" value="Search">
+        </form>
     </div>
-    <script src="src/chart.js"></script>
+    <!-- **************** -->
+    <div>
+        <!-- <h1 id="location2"></h1>
+        <h2 id="alternms"></h2> -->
+        <img class="center" id="picfetch" src="" alt="">
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="" id="img1" alt="" style="width:100%">
+        </div>
+        <div class="column">
+            <img src="" id="img2" alt="" style="width:100%">
+        </div>
+        <div class="column">
+            <img src="" id="img3" alt="" style="width:100%">
+        </div>
+        <div class="column">
+            <img src="" id="img4" alt="" style="width:100%">
+        </div>
+    </div>
+    <!-- **************** -->
+
+    <script src="src_a.js"></script>
 </body>
 
 </html>
