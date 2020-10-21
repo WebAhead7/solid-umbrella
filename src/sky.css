@@ -1,0 +1,82 @@
+:root {
+  --night-sky: linear-gradient(
+    to bottom,
+    #4a27a3 0%,
+    #6946c0 40%,
+    #a987ff 70%,
+    #fff 100%
+  );
+  --day-sky: linear-gradient(to bottom, #47b4fd 0%, #80cbfd 75%, #ffffff 100%);
+
+  --night-search: linear-gradient(
+    to top,
+    #4a27a3 10%,
+    #6946c0 30%,
+    #a987ff 90%
+  );
+  --day-search: linear-gradient(to top, #47b4fd 10%, #80cbfd 30%, #ffffff 90%);
+}
+
+.sky {
+  width: 100%;
+  background: var(--night-sky);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .search {
+  background: var(--day-search);
+} */
+
+.weather-icon {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 40px;
+  z-index: 1;
+}
+
+.status {
+  padding: 5px 20px;
+  margin: 50px 10px;
+  display: flex;
+  flex-direction: column;
+  /* justify-items: ; */
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 500px;
+  /* height: 50%; */
+  color: #fff;
+}
+
+.temperature-div {
+  text-align: right;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.status-div {
+  text-align: left;
+  font-size: 2rem;
+}
+
+/* @media all and (max-width: 500px) {
+  .sky {
+    height: 350px;
+  }
+}
+
+@media all and (max-width: 400px) {
+  .sky {
+    height: 350px;
+  }
+
+  .weather-icon {
+    width: 200px;
+    height: 200px;
+  }
+} */

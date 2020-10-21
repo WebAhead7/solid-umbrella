@@ -4,77 +4,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="src/sky.css">
+    <link rel="stylesheet" href="src/style.css">
+
+    <link rel="stylesheet" href="src/components/inputrange.css">
+
     <title>Weather</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 </head>
 
 <body>
-    
+    <div class="container">
+        <section class="sky">
+                <section class="first-section">
+                    <div class="current">
+                        <h1 id="location">Haifa</h1>
+                        <h4 id="dayTime">Wednesday 3:00</h4>
+                        <h4 id="status">24<sup>&#8451</sup> </h4>
 
-    
-    
-    
-
-    <div id="weather" class="weather">
-        
-        <div id="weather-graph-hourly" class="days-graph">
-                <div><div id="weather-datails">
-                    <h1 id="location">Haifa</h1>
-                    <h2 id="dayTime">Wednesday 3:00</h2>
-                    <h2 id="status">Clear</h2>
-                    <div class="dayimage-temp">
-                        <img src="./partly_cloudy.png" alt="sunny">
-                        <p>24 <sup>&#8451</sup> </p>
+                        <h4 id="status-1">Clear</h4>
+                        <div class="dayimage-temp">
+                            <img src="./partly_cloudy.png" alt="sunny">
+                            <!-- <p>24 <sup>&#8451</sup> </p> -->
+                        </div>
+                    </div>
+                   <div class="chart">
+                       <!-- <canvas id="myChart" height="40"></canvas> -->
+                  
+                       <div class="range">
+                        <input type="range" min="1" max="7" steps="1" value="1">
+                      </div>
+                      <ul class="range-labels">
+                        <li><span>|</span> <span data-value="1">NOW</span></li>
+                        <li><span>|</span> <span data-value="2">8 AM</span></li>
+                        <li><span>|</span> <span data-value="3">9 AM</span></li>
+                        <li><span>|</span> <span data-value="4">10 AM</span></li>
+                        <li><span>|</span> <span data-value="5">11 AM</span></li>
+                        <li><span>|</span> <span data-value="6">12 AM</span></li>
+                        <li><span>|</span> <span data-value="7">1 PM</span></li>
+                      </ul>
+                    </div>
+                </section>  
+                
+                <section class="second-section">
+                    <div class="current-more-info">
+                        <h3>Feels like: 26°C</h3>
+                        <h3>Wind speed: 18KM\h</h3>
+                        <h3>Humidity: 81%</h3>
+                    </div>
+                    <div class="days-holder">
+                        <a href="#">
+                        <div>
+                            <h3>TODAY</h3>
+                            <img src="partly_cloudy.png" />
+                            <p>24 <sup>&#8451</sup> </p>
+                        </div>
+                    </a>
+                        <a href="#">
+                        <div>
+                            <h3>FRI</h3>
+                            <img src="partly_cloudy.png" />
+                            <p>24 <sup>&#8451</sup> </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <h3>SAT</h3>
+                            <img src="partly_cloudy.png" />
+                            <p>24 <sup>&#8451</sup> </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <h3>SUN</h3>
+                            <img src="partly_cloudy.png" />
+                            <p>24 <sup>&#8451</sup> </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div>
+                            <h3>MON</h3>
+                            <img src="partly_cloudy.png" />
+                            <p>24 <sup>&#8451</sup> </p>
+                        </div>
+                    </a>
+                    </div>
+                </section>
+            </section>
+            <section class="search">
+                <div class="form">
+                    <input type="text" name="cityname" id="search">
+                    <button>Search By City</button>
+                </div>
+            </section>
+            <section class="section-2">
+                <div class="inner-section-2">
+                    <div class="img-holder">
+                        <img src="./src/imgs/japan.jpg" alt="">
+                    </div>
+                    <div class="info-holder">
+                        <h2>Tokyo, Japan</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas nemo delectus architecto voluptate, suscipit, commodi in incidunt asperiores eligendi tempora tenetur? Eveniet dolores voluptas magni, necessitatibus atque tenetur soluta ratione?
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem enim consectetur quod dolorum quasi repellendus eum quos porro neque nesciunt et possimus praesentium, aspernatur eaque soluta aliquid voluptates unde cumque.
+                        </p>
                     </div>
                 </div>
-            </div>
-                <div>
-                    <canvas id="myChart" width="800" height="100"></canvas>
-                </div>  
-        </div>
-        <div class="second-row">
-            <div><form>
-                <input type="text" placeholder="...">
-                <input type="submit" value="Search">
-            </form></div>
-            <div id="weather-days-detail" class="days-container">
-
-                <div id="day1">
-                    <h1>Tue</h1>
-                    <img src="./partly_cloudy.png" alt="rainy">
-                    <h2>24 <sup>&#8451</sup></h2>
+                <div class="inner-section-3">
+                    <img src="./src/imgs/japan.jpg" alt="">
+                    <img src="./src/imgs/japan.jpg" alt="">
+                    <img src="./src/imgs/japan.jpg" alt="">
+                    <img src="./src/imgs/japan.jpg" alt="">
+                    <img src="./src/imgs/japan.jpg" alt="">
+                    
                 </div>
-    
-                <div id="day2">
-                    <h1>Tue</h1>
-                    <img src="./partly_cloudy.png" alt="rainy">
-                    <h2>24 <sup>&#8451</sup></h2>
-                </div>
-    
-                <div id="day3">
-                    <h1>Tue</h1>
-                    <img src="./partly_cloudy.png" alt="rainy">
-                    <h2>24 <sup>&#8451</sup></h2>
-                </div>
-    
-                <div id="day4" class="day-details-card">
-                    <h1>Tue</h1>
-                    <img src="./partly_cloudy.png" alt="rainy">
-                    <h2>24 <sup>&#8451</sup></h2>
-                </div>
-                <div id="day5" class="day-details-card">
-                    <h1>Tue</h1>
-                    <img src="./partly_cloudy.png" alt="rainy">
-                    <h2>24 <sup>&#8451</sup></h2>
-                </div>
-    
-            </div>
-        </div>
-        
-        
+            </section>
     </div>
-    <script src="src/chart.js"></script>
+    <script src="src/elements.js"></script>
+    <script src="src/components/inputrange.js"></script>
+
 </body>
 
 </html>
+
+<!-- 
+<div id="weather-datails">
+    <h1 id="location">Haifa</h1>
+    <h2 id="dayTime">Wednesday 3:00</h2>
+    <h2 id="status">Clear</h2>
+    <div class="dayimage-temp">
+        <img src="./partly_cloudy.png" alt="sunny">
+        <p>24 <sup>&#8451</sup> </p>
+    </div>
+</div>
+
+<div id="day1">
+    <h1>Tue</h1>
+    <img src="./partly_cloudy.png" alt="rainy">
+    <h2>24 <sup>&#8451</sup></h2>
+</div> -->
