@@ -10,9 +10,8 @@
     <link rel="stylesheet" href="src/components/inputrange.css">
 
     <title>Weather</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-</head>
-
+   </head>
+   
 <body>
     <div class="container">
         <section class="sky">
@@ -20,12 +19,10 @@
                     <div class="current">
                         <h1 id="location">Haifa</h1>
                         <h4 id="dayTime">Wednesday 3:00</h4>
-                        <h4 id="status">24<sup>&#8451</sup> </h4>
-
-                        <h4 id="status-1">Clear</h4>
+                        <h4> <span id="todaytemp">24</span><sup>&#8451</sup></h4>
+                        <h4 id="status">Clear</h4>
                         <div class="dayimage-temp">
-                            <img src="./partly_cloudy.png" alt="sunny">
-                            <!-- <p>24 <sup>&#8451</sup> </p> -->
+                            <img id="todayImage" src="./partly_cloudy.png" alt="sunny">
                         </div>
                     </div>
                    <div class="chart">
@@ -52,40 +49,40 @@
                         <h3>Wind speed: 18KM\h</h3>
                         <h3>Humidity: 81%</h3>
                     </div>
-                    <div class="days-holder">
+                    <div id="days_holder" class="days-holder">
                         <a href="#">
-                        <div>
+                        <div id="day1">
                             <h3>TODAY</h3>
                             <img src="partly_cloudy.png" />
-                            <p>24 <sup>&#8451</sup> </p>
+                            <p><span>24</span> <sup>&#8451</sup></p>
                         </div>
                     </a>
                         <a href="#">
-                        <div>
+                        <div id="day2">
                             <h3>FRI</h3>
                             <img src="partly_cloudy.png" />
-                            <p>24 <sup>&#8451</sup> </p>
+                            <p><span>24</span> <sup>&#8451</sup> </p>
                         </div>
                     </a>
                     <a href="#">
-                        <div>
+                        <div id="day3">
                             <h3>SAT</h3>
                             <img src="partly_cloudy.png" />
-                            <p>24 <sup>&#8451</sup> </p>
+                            <p><span>24</span> <sup>&#8451</sup> </p>
                         </div>
                     </a>
                     <a href="#">
-                        <div>
+                        <div id="day4">
                             <h3>SUN</h3>
                             <img src="partly_cloudy.png" />
-                            <p>24 <sup>&#8451</sup> </p>
+                            <p><span>24</span> <sup>&#8451</sup> </p>
                         </div>
                     </a>
                     <a href="#">
-                        <div>
+                        <div id="day5">
                             <h3>MON</h3>
                             <img src="partly_cloudy.png" />
-                            <p>24 <sup>&#8451</sup> </p>
+                            <p><span>24</span> <sup>&#8451</sup> </p>
                         </div>
                     </a>
                     </div>
@@ -93,14 +90,14 @@
             </section>
             <section class="search">
                 <div class="form">
-                    <input type="text" name="cityname" id="search">
-                    <button>Search By City</button>
+                    <input type="text" name="cityname" id="searchValue">
+                    <button id="searchForm">Search By City</button>
                 </div>
             </section>
             <section class="section-2">
                 <div class="inner-section-2">
                     <div class="img-holder">
-                        <img src="./src/imgs/japan.jpg" alt="">
+                        <img id="picfetch" src="./src/imgs/japan.jpg" alt="">
                     </div>
                     <div class="info-holder">
                         <h2>Tokyo, Japan</h2>
@@ -110,35 +107,19 @@
                     </div>
                 </div>
                 <div class="inner-section-3">
-                    <img src="./src/imgs/japan.jpg" alt="">
-                    <img src="./src/imgs/japan.jpg" alt="">
-                    <img src="./src/imgs/japan.jpg" alt="">
-                    <img src="./src/imgs/japan.jpg" alt="">
-                    <img src="./src/imgs/japan.jpg" alt="">
+                    <img id="img1" src="./src/imgs/japan.jpg" alt="">
+                    <img id="img2" src="./src/imgs/japan.jpg" alt="">
+                    <img id="img3" src="./src/imgs/japan.jpg" alt="">
+                    <img id="img4" src="./src/imgs/japan.jpg" alt="">
+                    <img id="img5" src="./src/imgs/japan.jpg" alt="">
                     
                 </div>
             </section>
     </div>
     <script src="src/elements.js"></script>
     <script src="src/components/inputrange.js"></script>
+    <script src="src_a.js"></script>
 
 </body>
 
 </html>
-
-<!-- 
-<div id="weather-datails">
-    <h1 id="location">Haifa</h1>
-    <h2 id="dayTime">Wednesday 3:00</h2>
-    <h2 id="status">Clear</h2>
-    <div class="dayimage-temp">
-        <img src="./partly_cloudy.png" alt="sunny">
-        <p>24 <sup>&#8451</sup> </p>
-    </div>
-</div>
-
-<div id="day1">
-    <h1>Tue</h1>
-    <img src="./partly_cloudy.png" alt="rainy">
-    <h2>24 <sup>&#8451</sup></h2>
-</div> -->
