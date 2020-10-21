@@ -88,13 +88,13 @@ const searchValue = document.querySelector("#searchValue");
 const todayImage = document.getElementById("todayImage");
 const todayTemp = document.getElementById("todaytemp");
 const daysHolder = document.querySelector("#days_holder");
-const feels = document.getElementById('feels');
-const speed = document.getElementById('speed');
-const humidity = document.getElementById('humidity');
-const daylinks = document.querySelectorAll('.day-link');
+const feels = document.getElementById("feels");
+const speed = document.getElementById("speed");
+const humidity = document.getElementById("humidity");
+const daylinks = document.querySelectorAll(".day-link");
 var currenttimer = 0;
 var currentSelection = 0;
-const dayHours = document.getElementById('hookah');
+const dayHours = document.getElementById("hookah");
 
 function updateDayCards() {
   dayCards.forEach((day, index) => {
@@ -103,11 +103,6 @@ function updateDayCards() {
     dayCardElements[1].src = day.getImageSrc();
     dayCardElements[2].firstChild.innerText = day.getTemperature();
   });
-
-  // daysHolder.forEach((card, index) => {
-  //   // card.value = index + 1;
-  //   console.log(card);
-  // });
 }
 function fetchWeatherData(cityName) {
   if (cityName == "" || null) return;
@@ -127,9 +122,10 @@ function fetchWeatherData(cityName) {
       jsn.forecast.forecastday.forEach((day, index) => {
         eachDayForcastAPI(day, index);
       });
-      currenttimer=jsn.location.localtime.split(" ")[1].split(":")[0];
-      currenttimer=currenttimer.length==1?+"0"+currenttimer:currenttimer;
-      
+      currenttimer = jsn.location.localtime.split(" ")[1].split(":")[0];
+      currenttimer =
+        currenttimer.length == 1 ? +"0" + currenttimer : currenttimer;
+
       eachDayForcastHTML(jsn);
       updateDayCards();
       secondapi(cityName);
@@ -147,26 +143,31 @@ function fetchWeatherData(cityName) {
 // TempC: forecast.forecastday[0].hour[0].temp_c
 // windspeed: forecast.forecastday[0].hour[0].wind_kph
 
-
 function eachDayForcastAPI(day, index) {
   dayCards[index].setDay(new Date(day.date_epoch * 1000));
   dayCards[index].setTemperature(Math.round(day.day.avgtemp_c));
   dayCards[index].setImageSrc(`http:${day.day.condition.icon}`);
   // dayCards[index].sethourserature(day.hour.map((h) => h.temp_c));
-  dayCards[index].sethourserature(day.hour.map((h) => {
-    return {
-      status: h.condition.text,
-      icon: `http:${h.condition.icon}`,
-      temp: h.temp_c,
-      humidity: h.humidity,
-      windSpeed: h.wind_kph,
-      feels: h.feelslike_c
-    }
-  }));
+  dayCards[index].sethourserature(
+    day.hour.map((h) => {
+      return {
+        status: h.condition.text,
+        icon: `http:${h.condition.icon}`,
+        temp: h.temp_c,
+        humidity: h.humidity,
+        windSpeed: h.wind_kph,
+        feels: h.feelslike_c,
+      };
+    })
+  );
   dayCards[index].setHumidity(day.day.avghumidity);
-  dayCards[index].setFeels(Math.round(day.hour.map(h => h.feelslike_c).reduce((a, b) => a + b) / 24));
-  dayCards[index].setWindSpeed(Math.round(day.hour.map(h => h.wind_kph).reduce((a, b) => a + b) / 24));
-  dayCards[index].setStatus(day.day.condition.text)
+  dayCards[index].setFeels(
+    Math.round(day.hour.map((h) => h.feelslike_c).reduce((a, b) => a + b) / 24)
+  );
+  dayCards[index].setWindSpeed(
+    Math.round(day.hour.map((h) => h.wind_kph).reduce((a, b) => a + b) / 24)
+  );
+  dayCards[index].setStatus(day.day.condition.text);
 }
 
 function eachDayForcastHTML(jsn) {
@@ -174,10 +175,11 @@ function eachDayForcastHTML(jsn) {
   dayClicked(0);
 }
 
-function dayClicked(index){
+function dayClicked(index) {
   weatherStatus.innerText = dayCards[index].getStatus();
   let date = dayCards[index].getDay();
-  dateStr.innerText = date.toDateString().split(" ")[0] + " " + currenttimer + ":00";
+  dateStr.innerText =
+    date.toDateString().split(" ")[0] + " " + currenttimer + ":00";
   // console.log(date.toDateString().split(" ")[0]);
   todayImage.src = dayCards[index].getImageSrc();
   todayTemp.innerText = dayCards[index].getTemperature();
@@ -186,27 +188,34 @@ function dayClicked(index){
   humidity.innerText = dayCards[index].getHumidity();
 }
 
-function hourclicked(hour){
-  weatherStatus.innerText = dayCards[currentSelection].gethourserature()[hour].status;
+function hourclicked(hour) {
+  weatherStatus.innerText = dayCards[currentSelection].gethourserature()[
+    hour
+  ].status;
   todayImage.src = dayCards[currentSelection].gethourserature()[hour].icon;
   todayTemp.innerText = dayCards[currentSelection].gethourserature()[hour].temp;
   feels.innerText = dayCards[currentSelection].gethourserature()[hour].feels;
-  speed.innerText = dayCards[currentSelection].gethourserature()[hour].windSpeed;
-  humidity.innerText = dayCards[currentSelection].gethourserature()[hour].humidity;
+  speed.innerText = dayCards[currentSelection].gethourserature()[
+    hour
+  ].windSpeed;
+  humidity.innerText = dayCards[currentSelection].gethourserature()[
+    hour
+  ].humidity;
 }
 // fetchWeatherData("London");
 searchForm.addEventListener("click", (event) => {
   fetchWeatherData(searchValue.value);
 });
 
-daylinks.forEach(daylink => daylink.addEventListener('click',
-  (event) => {
+daylinks.forEach((daylink) =>
+  daylink.addEventListener("click", (event) => {
     event.preventDefault();
-    let index = event.target.id.split('day')[1] - 1;
+    let index = event.target.id.split("day")[1] - 1;
     currentSelection = index;
     dayClicked(index);
     // console.log(event.target.id.split('day')[1]);
-  }))
+  })
+);
 
 // ***************************
 const cityname = document.getElementById("location2");
@@ -226,7 +235,6 @@ function secondapi(cityName) {
       return response.json();
     })
     .then((info) => {
-
       citypic.src = info.results[0].urls.regular;
       citypic.alt = "";
       let arr = [];
@@ -234,8 +242,6 @@ function secondapi(cityName) {
       for (let i = 1; i < info.results.length; i++) {
         arr.push(i);
       }
-
-
 
       function createShuffledArray(level) {
         return Array.from({ length: level }, (_, index) => index + 1).sort(
@@ -247,9 +253,9 @@ function secondapi(cityName) {
 
       const test = createShuffledArray(info.results.length - 1);
 
-
       for (let i = 0; i < 5; i++) {
         let x = test[i];
+        console.log(x);
         pics[i].src = info.results[x].urls.small;
         pics[i].alt = "";
       }
@@ -259,7 +265,7 @@ function secondapi(cityName) {
     });
 }
 
-fetchWeatherData('Tokyo');
+fetchWeatherData("Tokyo");
 // function secondapi(){
 //     fetch(`https://rapidapi.p.rapidapi.com/cities/search/${searchValue.value}`, {
 //         "method": "GET",
