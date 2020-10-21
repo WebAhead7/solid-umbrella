@@ -58,11 +58,6 @@ function updateDayCards() {
     dayCardElements[1].src = day.getImageSrc();
     dayCardElements[2].firstChild.innerText = day.getTemperature();
   });
-
-  daysHolder.forEach((card, index) => {
-    // card.value = index + 1;
-    console.log(card);
-  });
 }
 function fetchWeatherData(cityName) {
   if (cityName == "" || null) return;
@@ -156,6 +151,7 @@ function secondapi() {
       for (let i = 0; i < 5; i++) {
         console.log(`pic${i + 1}`, test[i]);
         let x = test[i];
+        console.log(x);
         pics[i].src = info.results[x].urls.small;
         pics[i].alt = "";
       }
