@@ -10,7 +10,7 @@ READ ME FILE
 <p align="center">
   <h3 align="center">Best travel website EVER</h3>
   <p align="center">
-    <a href="https://webahead7.github.io/flags/"><strong>Check our website »</strong></a>
+    <a href="https://webahead7.github.io/solid-umbrella/"><strong>Check our website »</strong></a>
   </p>
 </p>
 
