@@ -10,6 +10,7 @@ function DayCard() {
   this.status;
   this.currenthour;
 }
+
 /**
  * getters
  */
@@ -129,7 +130,8 @@ function fetchWeatherData(cityName) {
       eachDayForcastHTML(jsn);
       updateDayCards();
       secondapi(cityName);
-      console.log(dayCards);
+      getPlaces(cityName);
+      getHotels(cityName);
     })
     .catch((err) => {
       console.log(err);
@@ -255,7 +257,7 @@ function secondapi(cityName) {
 
       for (let i = 0; i < 5; i++) {
         let x = test[i];
-        console.log(x);
+
         pics[i].src = info.results[x].urls.small;
         pics[i].alt = "";
       }

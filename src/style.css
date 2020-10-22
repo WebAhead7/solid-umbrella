@@ -45,7 +45,7 @@ body {
 
 .flexCenter {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -250,7 +250,7 @@ body {
   margin: 8px;
   border: solid 3px #292626;
   border-radius: 5px;
-  align-self: flex-end;
+  align-self: center;
 }
 /* ////////////////////////// SECTION 4 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
@@ -263,7 +263,7 @@ body {
   padding: 8px;
 }
 .card {
-  border: solid 2px black;
+  border: solid 1px rgb(63, 63, 63, 0.7);
   width: 18%;
   border-radius: 5px;
   padding: 8px;
@@ -277,9 +277,46 @@ body {
   font-size: 12px;
 }
 
+.header {
+  text-align: center;
+}
+
 .body {
-  border: solid 2px black;
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.fa-star {
+  color: green;
+  padding: 15px 0;
+  font-size: 22px;
+}
+
+.rest-near {
+  padding-top: 40px;
+  font-size: 40px;
+}
+
+/* ///////////////////////// RESPONESEVIENESS \\\\\\\\\\\\\\\\\\\\\\\\ */
+
+@media all and (max-width: 906px) {
+  .first-section {
+    flex-direction: column;
+  }
+
+  .second-section {
+    flex-direction: column;
+  }
+}
+
+/* //////////////////////// SECTION 5 \\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+.inner-section-5 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 30px;
+  padding: 8px;
 }
