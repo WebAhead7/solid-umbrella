@@ -214,8 +214,8 @@ function secondapi(cityName) {
       return response.json();
     })
     .then((info) => {
-      citypic.src = info.results[0].urls.regular;
-      citypic.alt = "";
+      // citypic.src = info.results[0].urls.regular;
+      // citypic.alt = "";
       let arr = [];
 
       for (let i = 1; i < info.results.length; i++) {
@@ -237,6 +237,10 @@ function secondapi(cityName) {
         pics[i].src = info.results[x].urls.small;
         pics[i].alt = "";
       }
+      setTimeout(() => {
+        
+        Array.from(order).sort((a, b) => a.height - b.height).forEach((el,i) =>el.style.order = i)
+      }, 50);
     })
     .catch((err) => {
       console.error(err);
@@ -252,3 +256,4 @@ function changeSky() {
 }
 
 fetchWeatherData("Tokyo");
+

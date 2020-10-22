@@ -25,3 +25,4 @@ let photos = [];
 let googlePlace;
 let googleHotels;
 let newPhoto;
+var order = document.querySelector('.inner-section-3').children
