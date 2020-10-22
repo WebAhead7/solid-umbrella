@@ -1,5 +1,5 @@
 READ ME FILE
-# Guess the flag
+# Solid Umbrella
 
 <!-- PROJECT LOGO -->
 <br />
