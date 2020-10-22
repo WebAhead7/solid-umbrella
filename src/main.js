@@ -197,13 +197,7 @@ daylinks.forEach((daylink) =>
 );
 
 // ***************************
-const cityname = document.getElementById("location2");
-const cityalter = document.getElementById("alternms");
-const citypic = document.getElementById("picfetch");
 
-const pics = [0, 0, 0, 0, 0].map((_, index) =>
-  document.getElementById(`img${index + 1}`)
-);
 
 function secondapi(cityName) {
   fetch(
