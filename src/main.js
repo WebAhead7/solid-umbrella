@@ -212,7 +212,7 @@ function secondapi(cityName) {
       // citypic.alt = "";
       let arr = [];
 
-      for (let i = 1; i < info.results.length; i++) {
+      for (let i = 0; i < info.results.length; i++) {
         arr.push(i);
       }
 
