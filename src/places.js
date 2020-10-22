@@ -18,7 +18,7 @@ function getPlaces(place) {
 
 function getHotels(place) {
   const places = fetch(
-    `https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotels+in+${place}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A
+    `${proxyurl}https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotels+in+${place}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A
   `
   );
   places
