@@ -108,7 +108,7 @@ function updateDayCards() {
 function fetchWeatherData(cityName) {
   if (cityName == "" || null) return;
   fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=e042ad289f3947858b4114057202010&q=${cityName}&days=5`,
+    `https://api.weatherapi.com/v1/forecast.json?key=e042ad289f3947858b4114057202010&q=${cityName}&days=5`,
     {
       method: "GET",
       headers: {},
