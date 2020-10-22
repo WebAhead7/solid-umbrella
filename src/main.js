@@ -239,7 +239,7 @@ function secondapi(cityName) {
       }
       setTimeout(() => {
         
-        Array.from(order).sort((a, b) => a.height - b.height).forEach((el,i) =>el.style.order = i)
+        Array.from(order).sort((b, a) => a.height - b.height).forEach((el,i) =>el.style.order = i)
       }, 50);
     })
     .catch((err) => {
