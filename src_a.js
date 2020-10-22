@@ -1,74 +1,75 @@
-let allData;
-function DayCard() {
-  this.day;
-  this.imagSrc;
-  this.temp;
-  this.hours;
-  this.feels;
-  this.humidity;
-  this.windSpeed;
-  this.status;
-  this.currenthour;
+class DayCard {
+  constructor() {
+    this.day;
+    this.imagSrc;
+    this.temp;
+    this.hours;
+    this.feels;
+    this.humidity;
+    this.windSpeed;
+    this.status;
+    this.currenthour;
+  }
+  /**
+   * getters
+   */
+  getDay() {
+    return this.day;
+  }
+  getImageSrc() {
+    return this.imagSrc;
+  }
+  getTemperature() {
+    return this.temp;
+  }
+  gethourserature() {
+    return this.hours;
+  }
+  getFeels() {
+    return this.feels;
+  }
+  getHumidity() {
+    return this.humidity;
+  }
+  getWindSpeed() {
+    return this.windSpeed;
+  }
+  getStatus() {
+    return this.status;
+  }
+  gethour() {
+    return this.currenthour;
+  }
+  /**Setters */
+  setDay(day) {
+    this.day = day;
+  }
+  setImageSrc(imgSrc) {
+    this.imagSrc = imgSrc;
+  }
+  setTemperature(temp) {
+    this.temp = temp;
+  }
+  sethourserature(arr) {
+    this.hours = arr;
+  }
+  setFeels(feels) {
+    this.feels = feels;
+  }
+  setHumidity(humidity) {
+    this.humidity = humidity;
+  }
+  setWindSpeed(windSpeed) {
+    this.windSpeed = windSpeed;
+  }
+  setStatus(status) {
+    this.status = status;
+  }
+  sethour(hour) {
+    this.hour = currenthour;
+  }
 }
-/**
- * getters
- */
-DayCard.prototype.getDay = function () {
-  return this.day;
-};
-DayCard.prototype.getImageSrc = function () {
-  return this.imagSrc;
-};
-DayCard.prototype.getTemperature = function () {
-  return this.temp;
-};
-DayCard.prototype.gethourserature = function () {
-  return this.hours;
-};
-DayCard.prototype.getFeels = function () {
-  return this.feels;
-};
-DayCard.prototype.getHumidity = function () {
-  return this.humidity;
-};
-DayCard.prototype.getWindSpeed = function () {
-  return this.windSpeed;
-};
-DayCard.prototype.getStatus = function () {
-  return this.status;
-};
-DayCard.prototype.gethour = function () {
-  return this.currenthour;
-};
 
-/**Setters */
-DayCard.prototype.setDay = function (day) {
-  this.day = day;
-};
-DayCard.prototype.setImageSrc = function (imgSrc) {
-  this.imagSrc = imgSrc;
-};
-DayCard.prototype.setTemperature = function (temp) {
-  this.temp = temp;
-};
-DayCard.prototype.sethourserature = function (arr) {
-  this.hours = arr;
-};
-DayCard.prototype.setFeels = function (feels) {
-  this.feels = feels;
-};
-DayCard.prototype.setHumidity = function (humidity) {
-  this.humidity = humidity;
-};
-DayCard.prototype.setWindSpeed = function (windSpeed) {
-  this.windSpeed = windSpeed;
-};
-DayCard.prototype.setStatus = function (status) {
-  this.status = status;
-};
-DayCard.prototype.sethour = function (hour) {
-  this.hour = currenthour;
-};
 /**
  * in this application we have 5 cards
  */
@@ -129,7 +130,8 @@ function fetchWeatherData(cityName) {
       eachDayForcastHTML(jsn);
       updateDayCards();
       secondapi(cityName);
-      console.log(dayCards);
+      getPlaces(cityName);
+      // console.log(dayCards);
     })
     .catch((err) => {
       console.log(err);
@@ -255,7 +257,7 @@ function secondapi(cityName) {
 
       for (let i = 0; i < 5; i++) {
         let x = test[i];
-        console.log(x);
+        // console.log(x);
         pics[i].src = info.results[x].urls.small;
         pics[i].alt = "";
       }

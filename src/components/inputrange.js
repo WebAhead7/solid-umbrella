@@ -6,7 +6,7 @@ $rangeInput.addEventListener("input", function (e) {
   let index = e.target.value;
   // $rangeInput.value = index;
   if(index!==undefined){
-    console.log("test2 " + index);
+    // console.log("test2 " + index);
     hourclicked((index-1)*2);
     dateStr.innerText = dateStr.innerText.split(" ")[0] + " " +((index-1)*2 < 10 ? "0"+(index-1)*2 : (index-1)*2)  +":00";
   }

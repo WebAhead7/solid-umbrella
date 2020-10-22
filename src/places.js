@@ -1,27 +1,29 @@
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
 function getPlaces(place) {
-  const places = fetch(
-    `https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${place}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A
-  `
-  );
-  places
+  fetch(
+    proxyurl+`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${place}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A`
+  )
     .then((promise) => {
       if (!promise.ok) throw new Error(promise.status, "ERROR HERE");
       return promise.json();
     })
     .then((json) => {
       googlePlace = json.results;
-      //   console.log(json.results[0].opening_hours.open_now);
       addCards(json.results);
+      console.log(json.results);
     })
+    //   console.log(json.results[0].opening_hours.open_now);
     .catch((error) => console.error(error));
 }
-
 function getPlaceImage(imgRef) {
-  const imgs = fetch(
+  fetch(
     `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${imgRef}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A`
-  );
-
-  imgs
+  )
+    .then((response) => {
+      if (!response.ok) throw new Error(response.status);
+      return response.json();
+    })
     .then((promise) => {
       console.log(promise.url);
     })
