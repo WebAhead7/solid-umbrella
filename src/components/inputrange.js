@@ -4,28 +4,37 @@ let sheet = document.createElement("style"),
 
 $rangeInput.addEventListener("input", function (e) {
   let index = e.target.value;
-  // $rangeInput.value = index;
-  if(index!==undefined){
-    console.log("test2 " + index);
-    hourclicked((index-1)*2);
-    dateStr.innerText = dateStr.innerText.split(" ")[0] + " " +((index-1)*2 < 10 ? "0"+(index-1)*2 : (index-1)*2)  +":00";
+  if (index !== undefined) {
+    hourclicked((index - 1) * 2);
+    dateStr.innerText =
+      dateStr.innerText.split(" ")[0] +
+      " " +
+      ((index - 1) * 2 < 10 ? "0" + (index - 1) * 2 : (index - 1) * 2) +
+      ":00";
+    changeSkyInput(index);
   }
 });
 
 // Change input value on label click
 document.querySelector(".range-labels").addEventListener("click", (e) => {
   let index;
-  // if (e.target.nodeName == "SPAN") {
-  //   console.log("test1 " + e.target.dataset.value);
-  // }
-  // if (e.target.dataset) {
-    index = e.target.dataset.value;
-    $rangeInput.value = index;
-    if(index!==undefined){
-      console.log("test2 " + index);
-      hourclicked((index-1)*2);
-      dateStr.innerText = dateStr.innerText.split(" ")[0] + " " + e.target.innerText;
-      
-    }
+
+  index = e.target.dataset.value;
+  $rangeInput.value = index;
+  if (index !== undefined) {
+    console.log("test2 " + index);
+    hourclicked((index - 1) * 2);
+    dateStr.innerText =
+      dateStr.innerText.split(" ")[0] + " " + e.target.innerText;
+    changeSkyInput(index);
+  }
   // }
 });
+
+function changeSkyInput(time) {
+  if ((time >= 1 && time <= 4) || (time >= 10 && time <= 12)) {
+    sky.style.background = `var(--night-sky)`;
+  } else {
+    sky.style.background = `var(--day-sky)`;
+  }
+}

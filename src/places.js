@@ -1,10 +1,6 @@
-let googlePlace;
-let googleHotels;
-let newPhoto;
 function getPlaces(place) {
   const places = fetch(
-    `https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${place}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A
-  `
+    `${proxyurl}https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${place}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A`
   );
   places
     .then((promise) => {
@@ -13,10 +9,10 @@ function getPlaces(place) {
     })
     .then((json) => {
       googlePlace = json.results;
-      //   console.log(json.results[0].opening_hours.open_now);
 
       addCards(json.results);
     })
+
     .catch((error) => console.error(error));
 }
 
@@ -40,12 +36,11 @@ function getHotels(place) {
 function addCards(data) {
   food.innerHTML = "";
   let cards = data.forEach((current, index) => {
-    let photo = current.photos[0].photo_reference;
-    if (index > 4) return;
+    if (index > 9) return;
     let div = document.createElement("div");
     div.classList.add("card");
-    div.type = photo;
     let open;
+
     if (!current.opening_hours) {
       open = false;
     } else {
@@ -71,11 +66,9 @@ function addCards(data) {
 function addHotels(data) {
   hotels.innerHTML = "";
   let cards = data.forEach((current, index) => {
-    let photo = current.photos[0].photo_reference;
     if (index > 4) return;
     let div = document.createElement("div");
     div.classList.add("card");
-    div.type = photo;
 
     let newDiv = `
     <h3 class="header">${current.name}</h3>
@@ -89,36 +82,4 @@ function addHotels(data) {
     div.innerHTML = newDiv;
     hotels.appendChild(div);
   });
-}
-
-let photos = [];
-
-function getPlaceImage(imgRef) {
-  food.childNodes.forEach((cur) => {
-    let key = cur.type;
-    getImg(key);
-  });
-
-  food.childNodes.forEach((cur) => {
-    // let imgSrc = cur.childNodes[3].childNodes[1];
-
-    photos.forEach((pic) => {
-      console.log(pic);
-      cur.childNodes[3].childNodes[1].src = pic;
-    });
-  });
-}
-{
-  /* <i class="fas fa-star"><h3>${
-      current.rating
-    }</h3></i> */
-}
-
-async function getImg(key) {
-  const img = await fetch(
-    `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${key}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A`
-  );
-
-  photos.push(img.url);
-  return photos;
 }

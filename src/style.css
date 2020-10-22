@@ -27,6 +27,7 @@ body {
   align-items: center;
   justify-content: space-around;
   width: 90%;
+  padding-top: 30px;
 }
 
 .current {
@@ -145,7 +146,7 @@ body {
 .form {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 40%;
   position: relative;
   border: 0px solid #1a1919;
   border-radius: 7px;
@@ -243,6 +244,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .inner-section-3 img {
@@ -256,17 +258,25 @@ body {
 
 .inner-section-4 {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-around;
   width: 100%;
   margin-top: 30px;
   padding: 8px;
+  flex-wrap: wrap;
 }
 .card {
   border: solid 1px rgb(63, 63, 63, 0.7);
   width: 18%;
   border-radius: 5px;
   padding: 8px;
+  margin: 10px 0;
+  /* max-height: 211px; */
+  min-height: 276px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .rating {
   display: flex;
@@ -285,6 +295,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: flex-end;
 }
 
 .fa-star {
@@ -308,15 +319,83 @@ body {
   .second-section {
     flex-direction: column;
   }
+
+  .chart {
+    display: none;
+  }
+
+  .days-holder {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .current {
+    width: 90%;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .current-more-info {
+    width: 100%;
+    text-align: center;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 50px;
+  }
+
+  .current-more-info h3 {
+    font-weight: bold;
+  }
+
+  .inner-section-5,
+  .inner-section-4 {
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 50%;
+  }
+
+  .inner-section-3 {
+    flex-wrap: wrap;
+  }
+
+  .inner-section-3 img {
+    width: 40%;
+  }
 }
 
+@media all and (max-width: 669px) {
+  .card {
+    width: 100%;
+  }
+
+  .form {
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 550px) {
+  .inner-section-3 img {
+    width: 100%;
+  }
+}
 /* //////////////////////// SECTION 5 \\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+.inner-section-5,
+.inner-section-4 {
+  flex: 1 0 auto;
+}
 
 .inner-section-5 {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-around;
   width: 100%;
-  margin-top: 30px;
+  margin-top: -15px;
   padding: 8px;
 }
