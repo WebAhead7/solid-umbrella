@@ -12,17 +12,17 @@
 }
 .range input::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  margin: -8px 0 0;
+  width: 30px;
+  height: 30px;
+  margin: -13px 0 0;
   border-radius: 50%;
   background: #12393f;
   cursor: pointer;
   border: 0 !important;
 }
 .range input::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
+  width: 30px;
+  height: 30px;
   margin: -8px 0 0;
   border-radius: 50%;
   background: #37adbf;

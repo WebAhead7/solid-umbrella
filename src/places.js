@@ -1,53 +1,85 @@
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
-
 function getPlaces(place) {
-  fetch(
-    proxyurl+`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${place}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A`
-  )
+  const places = fetch(
+    `${proxyurl}https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${place}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A`
+  );
+  places
     .then((promise) => {
       if (!promise.ok) throw new Error(promise.status, "ERROR HERE");
       return promise.json();
     })
     .then((json) => {
       googlePlace = json.results;
+
       addCards(json.results);
-      console.log(json.results);
     })
-    //   console.log(json.results[0].opening_hours.open_now);
+
     .catch((error) => console.error(error));
 }
-function getPlaceImage(imgRef) {
-  fetch(
-    `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${imgRef}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A`
-  )
-    .then((response) => {
-      if (!response.ok) throw new Error(response.status);
-      return response.json();
-    })
+
+function getHotels(place) {
+  const places = fetch(
+    `https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotels+in+${place}&key=AIzaSyCCMZkHcfHJhNKBhAOzr9PoAqcetEB3W1A
+  `
+  );
+  places
     .then((promise) => {
-      console.log(promise.url);
+      if (!promise.ok) throw new Error(promise.status, "ERROR HERE");
+      return promise.json();
     })
-    .catch((err) => console.error(err));
+    .then((json) => {
+      googleHotels = json.results;
+      addHotels(json.results);
+    })
+    .catch((error) => console.error(error));
 }
 
 function addCards(data) {
-  let cards = data.map((current) => {
-    console.log(current.name, current.rating);
-    // `
-    //       <div class="card">
-    //       <div class="header">${current.name}</div>
-    //       <div class="body">
-    //       <div class="first-section">
-    //       <div class="rating"><i class="fas fa-star"><h3>${
-    //         current.rating
-    //       }</h3></i><div>
-    //       <div class="icon">${current.icon}</div>
-    //       </div>
-    //       </div>
-    //       <div class="open">${"Open now"}</div>
-    //       </div>
-    //       `;
-  });
+  food.innerHTML = "";
+  let cards = data.forEach((current, index) => {
+    if (index > 9) return;
+    let div = document.createElement("div");
+    div.classList.add("card");
+    let open;
 
-  console.log(cards);
+    if (!current.opening_hours) {
+      open = false;
+    } else {
+      open = current.opening_hours.open_now;
+    }
+
+    let newDiv = `
+    <h3 class="header">${current.name}</h3>
+    <div class="body">
+    <img class="rest-img" src="${current.icon}" />
+    <div class="flexCenter"><i class="fas fa-star"><span>${
+      current.rating
+    }</span></i>
+    </div>
+    <h2>${open ? "Open now" : "Closed"}</h2>
+    </div>`;
+
+    div.innerHTML = newDiv;
+    food.appendChild(div);
+  });
+}
+
+function addHotels(data) {
+  hotels.innerHTML = "";
+  let cards = data.forEach((current, index) => {
+    if (index > 4) return;
+    let div = document.createElement("div");
+    div.classList.add("card");
+
+    let newDiv = `
+    <h3 class="header">${current.name}</h3>
+    <div class="body">
+    <img class="rest-img" src="${current.icon}" />
+    <div class="flexCenter"><i class="fas fa-star"><span>${current.rating}</span></i>
+    </div>
+    <h4>Total rating: ${current.user_ratings_total}</h4>
+    </div>`;
+
+    div.innerHTML = newDiv;
+    hotels.appendChild(div);
+  });
 }

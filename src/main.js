@@ -81,22 +81,6 @@ const dayCards = [
   new DayCard(),
 ];
 
-const city = document.getElementById("location");
-const dateStr = document.getElementById("dayTime");
-const weatherStatus = document.getElementById("status");
-const searchForm = document.getElementById("searchForm");
-const searchValue = document.querySelector("#searchValue");
-const todayImage = document.getElementById("todayImage");
-const todayTemp = document.getElementById("todaytemp");
-const daysHolder = document.querySelector("#days_holder");
-const feels = document.getElementById("feels");
-const speed = document.getElementById("speed");
-const humidity = document.getElementById("humidity");
-const daylinks = document.querySelectorAll(".day-link");
-var currenttimer = 0;
-var currentSelection = 0;
-const dayHours = document.getElementById("hookah");
-
 function updateDayCards() {
   dayCards.forEach((day, index) => {
     let dayCardElements = document.getElementById(`day${index + 1}`).children;
@@ -131,25 +115,18 @@ function fetchWeatherData(cityName) {
       updateDayCards();
       secondapi(cityName);
       getPlaces(cityName);
-      // console.log(dayCards);
+      getHotels(cityName);
+      changeSky();
     })
     .catch((err) => {
       console.log(err);
     });
 }
 
-// ICON:  forecast.forecastday[0].hour[0].condition.icon
-// TEXT - STATUS: forecast.forecastday[0].hour[0].condition.text
-// feels like: forecast.forecastday[0].hour[0].feelslike_c
-// humidity: forecast.forecastday[0].hour[0].humidity
-// TempC: forecast.forecastday[0].hour[0].temp_c
-// windspeed: forecast.forecastday[0].hour[0].wind_kph
-
 function eachDayForcastAPI(day, index) {
   dayCards[index].setDay(new Date(day.date_epoch * 1000));
   dayCards[index].setTemperature(Math.round(day.day.avgtemp_c));
   dayCards[index].setImageSrc(`http:${day.day.condition.icon}`);
-  // dayCards[index].sethourserature(day.hour.map((h) => h.temp_c));
   dayCards[index].sethourserature(
     day.hour.map((h) => {
       return {
@@ -182,7 +159,6 @@ function dayClicked(index) {
   let date = dayCards[index].getDay();
   dateStr.innerText =
     date.toDateString().split(" ")[0] + " " + currenttimer + ":00";
-  // console.log(date.toDateString().split(" ")[0]);
   todayImage.src = dayCards[index].getImageSrc();
   todayTemp.innerText = dayCards[index].getTemperature();
   feels.innerText = dayCards[index].getFeels();
@@ -204,7 +180,7 @@ function hourclicked(hour) {
     hour
   ].humidity;
 }
-// fetchWeatherData("London");
+
 searchForm.addEventListener("click", (event) => {
   fetchWeatherData(searchValue.value);
 });
@@ -215,7 +191,8 @@ daylinks.forEach((daylink) =>
     let index = event.target.id.split("day")[1] - 1;
     currentSelection = index;
     dayClicked(index);
-    // console.log(event.target.id.split('day')[1]);
+    changeSky();
+    $rangeInput.value = 1;
   })
 );
 
@@ -227,7 +204,7 @@ const citypic = document.getElementById("picfetch");
 const pics = [0, 0, 0, 0, 0].map((_, index) =>
   document.getElementById(`img${index + 1}`)
 );
-// console.log(pics);
+
 function secondapi(cityName) {
   fetch(
     `https://api.unsplash.com/search/photos/?client_id=Ix_JPaBdDffoVCKd5Dd4YuorLvJNxn3yUg2sS6GQrz8&query=${cityName}`
@@ -257,7 +234,6 @@ function secondapi(cityName) {
 
       for (let i = 0; i < 5; i++) {
         let x = test[i];
-        // console.log(x);
         pics[i].src = info.results[x].urls.small;
         pics[i].alt = "";
       }
@@ -265,6 +241,14 @@ function secondapi(cityName) {
     .catch((err) => {
       console.error(err);
     });
+}
+
+function changeSky() {
+  if (allData.current.is_day) {
+    sky.style.background = `var(--day-sky)`;
+  } else {
+    sky.style.background = `var(--night-sky)`;
+  }
 }
 
 fetchWeatherData("Tokyo");
